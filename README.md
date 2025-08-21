@@ -1,9 +1,6 @@
-# HILL CIPHER
-HILL CIPHER
-EX. NO: 3 AIM:
- 
+# EX. NO: 3 HILL CIPHER
 
-IMPLEMENTATION OF HILL CIPHER
+## AIM: IMPLEMENTATION OF HILL CIPHER
  
 ## To write a C program to implement the hill cipher substitution techniques.
 
@@ -29,7 +26,49 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-## OUTPUT
+void caesarEncrypt(char *text, int key) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        char c = text[i];
+        if (c >= 'A' && c <= 'Z') {
+            text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+        } else if (c >= 'a' && c <= 'z') {
+            text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
+        }
+    }
+}
 
-## RESULT
+void caesarDecrypt(char *text, int key) {
+    caesarEncrypt(text, -key);
+}
+
+int main() {
+    char message[100];
+    int key;
+
+    printf("Enter the message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+
+    printf("Enter the Caesar Cipher key (an integer): ");
+    scanf("%d", &key);
+
+    caesarEncrypt(message, key);
+    printf("Encrypted Message: %s", message);
+
+    caesarDecrypt(message, key);
+    printf("Decrypted Message: %s\n", message);
+
+    return 0;
+}
+```
+<img width="1521" height="847" alt="Screenshot 2025-08-21 142830" src="https://github.com/user-attachments/assets/1bb57789-5ffd-46c6-a7cf-93c76497bbe8" />
+
+
+
+
+## RESULT : 
+The program was executed and implemented successfully. 
+          
